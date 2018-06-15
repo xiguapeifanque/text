@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        margin: 0;
+    }
+    #box{
+      
+        background-color: bisque;
+        position: absolute;
+        
+        
+    }
+</style>
+<body>
+    <div id="box">
+
+    </div>
+</body>
+    <script>
+        var box = document.querySelector('#box');
+        document.onmousedown = function(e){
+            box.style.display = 'block';
+            var clientX = e.clientX;
+            var clientY = e.clientY;
+            console.log(clientX);
+
+           
+            document.onmousemove = function(e){
+                var clientXm = e.clientX;
+                var clientYm = e.clientY;
+                if(clientYm > clientY){
+                    var boxH = clientYm - clientY;
+                    var boxW = clientXm -clientX;
+                    box.style.top = clientYm -boxH + 'px';
+                    box.style.left = clientXm -boxW+ 'px';
+                  
+                }
+                if(clientYm < clientY){
+                    var boxH = clientY-clientYm;
+                    var boxW = clientX-clientXm;
+                    box.style.top = clientYm + 'px';
+                    box.style.left = clientXm + 'px';
+                }
+                
+                box.style.height = boxH + 'px';
+                box.style.width = boxW + 'px'; 
+
+            }
+            
+            
+        }
+        document.onmouseup = function(e){
+            box.style.display = 'none';
+        }
+       
+    </script>
+</html>
